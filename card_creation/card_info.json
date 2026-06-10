@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Strike", 
+        "type": "attack", 
+        "damage": 5, 
+        "cost": 1
+    },
+    {
+        "name": "Shield", 
+        "type": "defend", 
+        "block": 3, 
+        "cost": 1
+    }
+]
