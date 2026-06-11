@@ -13,7 +13,3 @@ class Deck:
 
     def fill_starting_deck(self):
         self.draw_pile = load_cards()
-
-player_deck = Deck()
-player_deck.fill_starting_deck()
-print(player_deck.draw_pile)
