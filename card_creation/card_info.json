@@ -1,4 +1,5 @@
-[
+{
+    "basic_cards":[
     {
         "name": "Strike", 
         "type": "attack", 
@@ -11,4 +12,19 @@
         "block": 3, 
         "cost": 1
     }
-]
+    ],
+    
+    "upgraded_cards":[{
+        "name": "Strike", 
+        "type": "attack", 
+        "damage": 5, 
+        "cost": 1
+    },
+    {
+        "name": "Shield", 
+        "type": "defend", 
+        "block": 3, 
+        "cost": 1
+    }
+    ]
+}

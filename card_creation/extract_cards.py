@@ -14,7 +14,7 @@ def load_cards():
 
     cards = []
 
-    for card in data: 
+    for card in data["basic_cards"]: 
         new_card = Card(
             name=card["name"], 
             card_type=card["type"],

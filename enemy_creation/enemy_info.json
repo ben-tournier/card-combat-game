@@ -1,0 +1,45 @@
+{
+  "normal": [
+    {
+      "name": "Slime",
+      "hp": 10,
+      "damage": 2,
+      "block": 0,
+      "behavior": "attack"
+    },
+    {
+      "name": "Goblin",
+      "hp": 12,
+      "damage": 3,
+      "block": 0,
+      "behavior": "attack"
+    },
+    {
+      "name": "Orc",
+      "hp": 18,
+      "damage": 5,
+      "block": 0,
+      "behavior": "attack"
+    }
+  ],
+
+  "elite": [
+    {
+      "name": "Armored Orc",
+      "hp": 25,
+      "damage": 6,
+      "block": 3,
+      "behavior": "defend_attack"
+    }
+  ],
+
+  "boss": [
+    {
+      "name": "Dragon",
+      "hp": 80,
+      "damage": 10,
+      "block": 5,
+      "behavior": "multi_attack"
+    }
+  ]
+}
