@@ -12,7 +12,7 @@ def load_cards():
     with open(file_path, 'r') as f:
         data = json.load(f)
 
-    cards = []
+    cards = {}
 
     for card in data["basic_cards"]: 
         new_card = Card(
@@ -23,6 +23,6 @@ def load_cards():
             cost=card["cost"]
 
             )
-        cards.append(new_card)
+        cards[new_card.name] = new_card
         
     return cards

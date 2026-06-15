@@ -3,7 +3,7 @@
 This is a terminal based combat game centered around deck construction and combat against varied enemies 
 
 ## Features
-- JSON file extraction for enemy data
+- JSON file extraction for enemy / card data
 - unique combat orders
 - Deck building constructing elements
 - boss fights

@@ -11,7 +11,13 @@
         "type": "defend", 
         "block": 3, 
         "cost": 1
-    }
+    },
+    {
+        "name": "Hypnotize", 
+        "type": "stun", 
+        "damage": 2, 
+        "cost": 1
+    }    
     ],
     
     "upgraded_cards":[{
