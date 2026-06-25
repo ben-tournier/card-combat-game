@@ -12,6 +12,7 @@ class BattleDeck:
         self.draw_pile = []
         self.hand = []
         self.discard_pile = []
+        self.hand_size = 5
 
         # --------------- Setup ---------------
     def fill_starting_deck(self):
@@ -19,7 +20,7 @@ class BattleDeck:
 
         cards =load_cards()
 
-        for i in range(5):
+        for _ in range(5):
             self.draw_pile.append(deepcopy(cards["Strike"]))
             self.draw_pile.append(deepcopy(cards["Shield"]))
 
@@ -28,29 +29,62 @@ class BattleDeck:
     # this only shuffles the draw pile for the player
     def shuffle_deck(self):
         random.shuffle(self.draw_pile)
+
+    # still in the design phase but there may be points where changed hand size are rewards for certain points 
+    def change_hand_size(self, amount):
+        self.hand_size += amount
     
         #--------------- Card Movement ---------------
 
-    # this will shuffle the discard and the draw pile together making it really useful at the end of a floor when everything should be reset
-    def refresh_draw_pile(self):
-        for card in range(len(self.discard_pile)):
-            self.draw_pile.append(self.discard_pile.pop(0))
+    # The piles are reshuffled after all of the cards are drawn from the deck
+    def reshuffle_discard_to_draw(self):
+        self.draw_pile.extend(self.discard_pile)
+        self.discard_pile.clear()
+        self.shuffle_deck()
 
-    # the players hand size will be 5 for now cards may eventually upgrade it in which case will need to change so cant draw from empty deck
-    # as of right now just sets up a 5 card hand for the user
+    # This is where the discard will be called to shuffle in provided the draw is empty
+    def draw_card(self):
+        if len(self.draw_pile) == 0:
+            if len(self.discard_pile) ==0:
+                # Ideally never executes - means all cards are gone
+                return None
+            # this means all cards are in discard or hand
+            self.reshuffle_discard_to_draw()
+        
+        drawn_card = self.draw_pile.pop(0)
+        self.hand.append(drawn_card)
+        return drawn_card
+    
+    
     def draw_hand(self):
-        for card in range(5):
+        for _ in range(self.hand_size):
+            card = self.draw_card()
+            if card is None:
+                break
 
-            if len(self.draw_pile) == 0:
-                self.shuffle_piles()
-
-            self.hand.append(self.draw_pile.pop(0))
-
-
+    # part of the gameplay loop is going to be discarding what is left with the hand at the end of the turn
     def discard_hand(self):
         self.discard_pile.extend(self.hand)
         self.hand.clear()
 
         #--------------- gameplay ---------------
 
-    #def play_card(self):
+    def show_hand(self):
+        if len(self.hand) == 0:
+            return "Your hand is empty."
+
+        output = []
+        for index, card in enumerate(self.hand, start=1):
+            output.append(f"{index}. {card.name}")
+
+        return "\n".join(output)
+    
+    # the parameter will not be checked before being passed in - some sort of error message can be implemented later
+    def play_card_from_hand(self, position):
+        if position <1 or position > len(self.hand):
+            return None
+        
+        card_played = self.hand.pop(position - 1)
+        self.discard_pile.append(card_played)
+        return card_played
+    
