@@ -1,5 +1,12 @@
 from player import Player
+from enemy_creation.enemy import Enemy
 from enemy_creation.enemy_pool import generate_encounter
+
+# This functin gets everything organized at the beginning creating player object and getting name
+def startup():
+    name = input("Hello there, what name would you like to use? ")
+    user = Player(name)
+    return user
 
 # This function carries a lot of the real weight for the actual game loop
 # The start of the turn, end of the turn, and combat itself are all kept inside of here
@@ -8,7 +15,7 @@ def combat(user, enemies):
     
     # The outside for loop is what both allows the player and limits them to playing 3 cards each turn 
     for card in range(3):
-        print(f"\n You currently have {user.block} block and {user.hp} hp")
+        user.combat_state()
 
         print("\n You are facing:")
         # This will pring out all enemies individually with an associated number but only if they are still alive
@@ -35,6 +42,7 @@ def combat(user, enemies):
                 enemies_alive += 1
 
         if enemies_alive == 0:
+            user.end_of_turn()
             return False
     
     # This is the point after the user has played all of the cards in hand
@@ -42,12 +50,37 @@ def combat(user, enemies):
 
     print("Enemies turn")
 
+    for enemy in enemies: 
+        if enemy.check_attack():
+            user.take_damage(enemy)
+
+    return True
+
+# This function will happen after a user successsfuly gets through a floor of combar 
+# It will cleanup money for the user, heal, and offer a deck change
+def reward(user):
+    user.cleanup_gold()
+    
+    options = ["Heal up 5 hp", "Buy a new card", "Upgrade an existing card"]
+    print(f"You currently have {user.gold} gold")
+    
+    for index, choice in enumerate(options):
+        print(f"{index+1} {choice}")
+
+    choice = int(input("What would you like to do? "))
 
 
-def startup():
-    name = input("Hello there, what name would you like to use? ")
-    user = Player(name)
-    return user
+    if choice == 1:
+        print(user.heal(5))
+
+    elif choice == 2: 
+        print("Sorry Option Currently Unavailible")
+
+    else:
+        #print out full deck and ask which card wanted to upgrade
+        #replace card chosen
+        #must figure out way to change card so able to tell difference (Ex. 'strike' vs 'strike+')
+
 
 
 def run():
@@ -60,6 +93,8 @@ def run():
 
         while enemies_alive:
             enemies_alive = combat(user, enemies)
+        
+        reward(user)
         
         current_floor += 1 
 

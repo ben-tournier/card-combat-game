@@ -18,6 +18,7 @@ def load_enemies(include_elite=True, include_boss=True):
             hp=enemy["hp"],
             damage=enemy["damage"],
             block=enemy.get("block", 0),
+            value=enemy["value"],
             behavior=enemy.get("behavior", "attack")
         ))
 

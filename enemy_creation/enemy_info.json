@@ -5,6 +5,7 @@
       "hp": 10,
       "damage": 2,
       "block": 0,
+      "value": 2,
       "behavior": "attack"
     },
     {
@@ -12,6 +13,7 @@
       "hp": 12,
       "damage": 3,
       "block": 0,
+      "value": 3,
       "behavior": "attack"
     },
     {
@@ -19,6 +21,7 @@
       "hp": 18,
       "damage": 5,
       "block": 0,
+      "value": 4,
       "behavior": "attack"
     }
   ],
@@ -29,6 +32,7 @@
       "hp": 25,
       "damage": 6,
       "block": 3,
+      "value": 5,
       "behavior": "defend_attack"
     }
   ],
@@ -39,6 +43,7 @@
       "hp": 80,
       "damage": 10,
       "block": 5,
+      "value": 10,
       "behavior": "multi_attack"
     }
   ]

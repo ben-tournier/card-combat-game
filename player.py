@@ -13,10 +13,15 @@ class Player:
         self.hp = 25
         self.block = 0
         self.gold = 10
+        self.money_pool = 0
 
+    def combat_state(self):
+        print(f"\nYou currently have {self.block} block and {self.hp} hp")
 
         # ------------- Hand functions -------------
     def start_of_turn(self):
+        if self.block > 0:
+            print("Removing all block")
         self.block = 0
         self.deck.draw_hand()
 
@@ -26,7 +31,7 @@ class Player:
 
     # may eventually be extended to add in removal of all temporary effects 
     def end_of_turn(self):
-        print("Discarding Hand...")
+        print("Discarding Hand... \n")
         self.deck.discard_hand()
 
         # ------------- Combat functions -------------
@@ -41,14 +46,25 @@ class Player:
 
     def heal(self, amount):
         self.hp += amount
+        return f"{self.name} healed up to {self.hp} hp"
 
-    def take_damage(self, amount):
+    def take_damage(self, enemy):
+        amount = enemy.get_damage()
+
         if amount > self.block:
             amount -= self.block
             self.block = 0
             self.hp -= amount 
         else:
             self.block -= amount
+
+        print(f"{enemy} delt {amount} damage to {self.name}")
+        
+        # I only want the user informed if they still have block left
+        if self.block>0:
+            self.combat_state()
+
+
 
     def play_card(self, position, enemy):
         card_played = self.deck.play_card_from_hand(position)
@@ -62,10 +78,11 @@ class Player:
         if not enemy == None :
             
             enemy.take_damage(card_played.damage)
-            actions_from_card.append(f"dealing {card_played.damage} damage to {enemy}")
+            actions_from_card.append(f"\ndealing {card_played.damage} damage to {enemy}")
             
             if not enemy.is_alive():
                 actions_from_card.append(f"{enemy.name} has been killed")
+                self.money_pool += enemy.value
 
         if card_played.block > 0:
             self.gain_block(card_played.block)
@@ -75,6 +92,10 @@ class Player:
             print(string)
 
         # ------------- Spending Functions -------------
+    def cleanup_gold(self):
+        self.gold += self.money_pool
+        self.money_pool = 0
+
     def spend_gold(self, amount):
         if amount > self.gold:
             return False
@@ -82,7 +103,6 @@ class Player:
     
     def gain_gold(self, amount):
         self.gold += amount 
-
 
     def __repr__(self):
         return f"Player(HP={self.hp}, Block={self.block}, Gold={self.gold})"
