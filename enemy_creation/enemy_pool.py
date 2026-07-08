@@ -10,6 +10,7 @@ def generate_encounter(floor):
     
     elif floor <= 3:
         pool = ALL_ENEMIES[:4]
+        count = 1
 
     else:
         pool = ALL_ENEMIES

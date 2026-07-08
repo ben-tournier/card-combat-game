@@ -68,6 +68,11 @@ class BattleDeck:
         self.hand.clear()
 
         #--------------- gameplay ---------------
+    def get_type(self, index):
+        return self.hand[index].card_type
+
+    def get_damage(self, index):
+        return self.hand[index].damage > 0 
 
     def show_hand(self):
         if len(self.hand) == 0:

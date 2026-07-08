@@ -20,3 +20,7 @@ def load_enemies(include_elite=True, include_boss=True):
             block=enemy.get("block", 0),
             behavior=enemy.get("behavior", "attack")
         ))
+
+    return enemies
+
+

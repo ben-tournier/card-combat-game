@@ -21,14 +21,21 @@ class Player:
         self.deck.draw_hand()
 
     def relay_cards_in_hand(self):
-        self.deck.show_hand()
+        return self.deck.show_hand()
     
 
     # may eventually be extended to add in removal of all temporary effects 
     def end_of_turn(self):
+        print("Discarding Hand...")
         self.deck.discard_hand()
 
         # ------------- Combat functions -------------
+    def check_card_type(self, index):
+        return self.deck.get_type(index)
+    
+    def check_card_damage(self, index):
+        return self.deck.get_damage(index)
+
     def gain_block(self, amount):
         self.block += amount
 
@@ -52,14 +59,20 @@ class Player:
         actions_from_card = []
 
         # this part gets a little complicated as it refers to the card class to figure out the type and bases the next part off of that
-        if card_played.damage > 0:
+        if not enemy == None :
+            
             enemy.take_damage(card_played.damage)
-            actions_from_card.append(f"dealing {card_played.damage} damage")
-        
+            actions_from_card.append(f"dealing {card_played.damage} damage to {enemy}")
+            
+            if not enemy.is_alive():
+                actions_from_card.append(f"{enemy.name} has been killed")
+
         if card_played.block > 0:
             self.gain_block(card_played.block)
             actions_from_card.append(f"gaining {card_played.block} block")
 
+        for string in actions_from_card:
+            print(string)
 
         # ------------- Spending Functions -------------
     def spend_gold(self, amount):
@@ -74,7 +87,3 @@ class Player:
     def __repr__(self):
         return f"Player(HP={self.hp}, Block={self.block}, Gold={self.gold})"
     
-me = Player()
-print(me)
-me.start_of_turn()
-print(me.relay_cards_in_hand())
