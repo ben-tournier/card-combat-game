@@ -1,36 +1,157 @@
 {
-    "basic_cards":[
+  "cards": [
     {
-        "name": "Strike", 
-        "type": "attack", 
-        "damage": 5, 
+      "cardid": 1,
+      "basic": {
+        "name": "Strike",
+        "type": "attack",
+        "damage": 5,
+        "block": 0,
         "cost": 1
+      },
+      "upgraded": {
+        "name": "Strike+",
+        "type": "attack",
+        "damage": 8,
+        "block": 0,
+        "cost": 1
+      }
     },
     {
-        "name": "Shield", 
-        "type": "defend", 
-        "block": 3, 
+      "cardid": 2,
+      "basic": {
+        "name": "Shield",
+        "type": "defend",
+        "damage": 0,
+        "block": 3,
         "cost": 1
+      },
+      "upgraded": {
+        "name": "Shield+",
+        "type": "defend",
+        "damage": 0,
+        "block": 6,
+        "cost": 1
+      }
     },
     {
-        "name": "Hypnotize", 
-        "type": "stun", 
-        "damage": 2, 
+      "cardid": 3,
+      "basic": {
+        "name": "Hypnotize",
+        "type": "stun",
+        "damage": 2,
+        "block": 0,
         "cost": 1
-    }    
-    ],
-    
-    "upgraded_cards":[{
-        "name": "Strike", 
-        "type": "attack", 
-        "damage": 5, 
+      },
+      "upgraded": {
+        "name": "Hypnotize+",
+        "type": "stun",
+        "damage": 4,
+        "block": 0,
         "cost": 1
+      }
     },
     {
-        "name": "Shield", 
-        "type": "defend", 
-        "block": 3, 
+      "cardid": 4,
+      "basic": {
+        "name": "Heavy Strike",
+        "type": "attack",
+        "damage": 9,
+        "block": 0,
+        "cost": 2
+      },
+      "upgraded": {
+        "name": "Heavy Strike+",
+        "type": "attack",
+        "damage": 13,
+        "block": 0,
+        "cost": 2
+      }
+    },
+    {
+      "cardid": 5,
+      "basic": {
+        "name": "Quick Jab",
+        "type": "attack",
+        "damage": 3,
+        "block": 0,
+        "cost": 0
+      },
+      "upgraded": {
+        "name": "Quick Jab+",
+        "type": "attack",
+        "damage": 5,
+        "block": 0,
+        "cost": 0
+      }
+    },
+    {
+      "cardid": 6,
+      "basic": {
+        "name": "Fortify",
+        "type": "defend",
+        "damage": 0,
+        "block": 7,
+        "cost": 2
+      },
+      "upgraded": {
+        "name": "Fortify+",
+        "type": "defend",
+        "damage": 0,
+        "block": 11,
+        "cost": 2
+      }
+    },
+    {
+      "cardid": 7,
+      "basic": {
+        "name": "Bash",
+        "type": "attack",
+        "damage": 7,
+        "block": 0,
+        "cost": 2
+      },
+      "upgraded": {
+        "name": "Bash+",
+        "type": "attack",
+        "damage": 10,
+        "block": 0,
+        "cost": 2
+      }
+    },
+    {
+      "cardid": 8,
+      "basic": {
+        "name": "Adrenaline",
+        "type": "utility",
+        "damage": 0,
+        "block": 0,
+        "cost": 0
+      },
+      "upgraded": {
+        "name": "Adrenaline+",
+        "type": "utility",
+        "damage": 0,
+        "block": 0,
+        "cost": 0
+      }
+    },
+    {
+      "cardid": 9,
+      "basic": {
+        "name": "Reinforce",
+        "type": "attack",
+        "damage": 4,
+        "block": 3,
         "cost": 1
+      },
+      "upgraded": {
+        "name": "Reinforce+",
+        "type": "attack",
+        "damage": 6,
+        "block": 5,
+        "cost": 1
+      }
     }
-    ]
+  ]
 }

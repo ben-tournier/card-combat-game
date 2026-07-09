@@ -4,11 +4,13 @@ from card_creation.extract_cards import load_cards
 
 """
 This class is the beast that makes the game work - everything for the deck that the player draws into, discards into and changes is in here as well as the players hand strategies and card playing abilities
-While it is a messy class it is a lot simpler than the constant importation of seperating out into a deck and a hand class 
+While it is a messy class it is a lot simpler than the constant importation of seperating out into a deck and a hand class
 """
 class BattleDeck:
-    
+
     def __init__(self):
+        self.cards = load_cards()
+
         self.draw_pile = []
         self.hand = []
         self.discard_pile = []
@@ -18,22 +20,20 @@ class BattleDeck:
     def fill_starting_deck(self):
         # to make a reasonably functioning starting deck there are 10 copies of the basic strike and shield cards and 1 unique copy of a hypnotize card
 
-        cards =load_cards()
-
         for _ in range(5):
-            self.draw_pile.append(deepcopy(cards["Strike"]))
-            self.draw_pile.append(deepcopy(cards["Shield"]))
+            self.draw_pile.append(deepcopy(self.cards[1]["basic"]))
+            self.draw_pile.append(deepcopy(self.cards[2]["basic"]))
 
-        self.draw_pile.append(deepcopy(cards["Hypnotize"]))
+        self.draw_pile.append(deepcopy(self.cards[3]["basic"]))
 
     # this only shuffles the draw pile for the player
     def shuffle_deck(self):
         random.shuffle(self.draw_pile)
 
-    # still in the design phase but there may be points where changed hand size are rewards for certain points 
+    # still in the design phase but there may be points where changed hand size are rewards for certain points
     def change_hand_size(self, amount):
         self.hand_size += amount
-    
+
         #--------------- Card Movement ---------------
 
     # The piles are reshuffled after all of the cards are drawn from the deck
@@ -45,17 +45,17 @@ class BattleDeck:
     # This is where the discard will be called to shuffle in provided the draw is empty
     def draw_card(self):
         if len(self.draw_pile) == 0:
-            if len(self.discard_pile) ==0:
+            if len(self.discard_pile) == 0:
                 # Ideally never executes - means all cards are gone
                 return None
+
             # this means all cards are in discard or hand
             self.reshuffle_discard_to_draw()
-        
+
         drawn_card = self.draw_pile.pop(0)
         self.hand.append(drawn_card)
         return drawn_card
-    
-    
+
     def draw_hand(self):
         for _ in range(self.hand_size):
             card = self.draw_card()
@@ -68,11 +68,12 @@ class BattleDeck:
         self.hand.clear()
 
         #--------------- gameplay ---------------
+
     def get_type(self, index):
         return self.hand[index].card_type
 
     def get_damage(self, index):
-        return self.hand[index].damage > 0 
+        return self.hand[index].damage > 0
 
     def show_hand(self):
         if len(self.hand) == 0:
@@ -83,13 +84,57 @@ class BattleDeck:
             output.append(f"{index}. {card.name}")
 
         return "\n".join(output)
-    
+
     # the parameter will not be checked before being passed in - some sort of error message can be implemented later
     def play_card_from_hand(self, position):
-        if position <1 or position > len(self.hand):
+        if position < 1 or position > len(self.hand):
             return None
-        
+
         card_played = self.hand.pop(position - 1)
         self.discard_pile.append(card_played)
         return card_played
-    
+
+    #--------------- Upgrading Cards ---------------
+
+    def add_card(self, card_id):
+        self.discard_pile.append(
+            deepcopy(self.cards[card_id]["basic"])
+        )
+
+    def upgrade_card(self, card):
+        upgraded = self.cards[card.card_id]["upgraded"]
+
+        upgraded = deepcopy(upgraded)
+
+        for pile in [self.draw_pile, self.hand, self.discard_pile]:
+            for index, current_card in enumerate(pile):
+                if current_card is card:
+                    pile[index] = upgraded
+                    return True
+                
+        return False
+                
+    def show_full_deck(self):
+        deck = self.get_full_deck()
+
+        if len(deck) == 0:
+            return "Your deck is empty."
+
+        output = []
+
+        for index, card in enumerate(deck, start=1):
+            output.append(f"{index}. {card.name}")
+
+        return "\n".join(output)
+
+
+    def get_full_deck(self):
+        full_deck = []
+
+        full_deck.extend(self.draw_pile)
+        full_deck.extend(self.hand)
+        full_deck.extend(self.discard_pile)
+
+        return full_deck
+
+        

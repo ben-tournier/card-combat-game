@@ -65,13 +65,15 @@ class Player:
             self.combat_state()
 
 
-
+    # this is the function that actually playst the card in the player combat system 
     def play_card(self, position, enemy):
         card_played = self.deck.play_card_from_hand(position)
 
         if card_played is None:
             return "Invalid card choice"
         
+        print(f"Playing {card_played.name}")
+
         actions_from_card = []
 
         # this part gets a little complicated as it refers to the card class to figure out the type and bases the next part off of that

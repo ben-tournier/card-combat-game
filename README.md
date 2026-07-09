@@ -12,6 +12,7 @@ This is a terminal based combat game centered around deck construction and comba
 Run the main file
 
 ## Future Improvements
+- more in depth reward system 
 - More enemies 
 - More Cards
 - Save file 
