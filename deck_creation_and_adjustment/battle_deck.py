@@ -96,6 +96,23 @@ class BattleDeck:
 
     #--------------- Upgrading Cards ---------------
 
+    def remove_card(self, card):
+
+        if card in self.draw_pile:
+            self.draw_pile.remove(card)
+            return True
+
+        if card in self.discard_pile:
+            self.discard_pile.remove(card)
+            return True
+
+        if card in self.hand:
+            self.hand.remove(card)
+            return True
+
+        return False
+
+
     def add_card(self, card_id):
         self.discard_pile.append(
             deepcopy(self.cards[card_id]["basic"])

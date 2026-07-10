@@ -5,29 +5,6 @@ def clear_terminal():
     time.sleep(.5)
     os.system("cls")
 
-# This function will happen after a user successsfuly gets through a floor of combar 
-# It will cleanup money for the user, heal, and offer a deck change
-def reward(user):
-    user.cleanup_gold()
-
-    # Every cleared floor the user will heal up 5 hp
-    user.heal(5)
-    print(f"{user.name} healed 5 hp")
-
-    # let user know funding before going through shops and whatnot
-    print(f"\nYou currently have {user.gold} gold")
-
-    add_card(user)
-
-    upgrade_card(user)
-   
-
-    # this function is still being worked out but will eventually allow for the deck to be shaped how the user wants it to be
-    if get_valid_input("Would you like to remove a card?"):
-        print("Not implemented yet.")
-
-    # cleans up screen after reward
-    clear_terminal()
 
 
 
@@ -103,7 +80,7 @@ def add_card(user):
 
                     break
 
-            print("Please enter a valid card number or i<number>.")
+            print("Please enter a valid card number or i#")
 
 
 """
@@ -164,3 +141,91 @@ def upgrade_card(user):
                     break
 
             print("Please enter a valid card index")
+
+
+def remove_card(user):
+    if len(user.deck.get_full_deck()) <= 5:
+        print("Your deck is too small to remove another card")
+        return
+
+
+
+    if get_valid_input("Would you like to remove a card?"):
+
+            print("\nAvailable Cards:")
+
+            available_cards = user.deck.get_full_deck()
+
+            # This only allows the user to have 3 cards to choose from when adding to the deck
+            # The cards are always randomly chosen but always unique from the list of availible cards
+            selected_available_cards = random.sample(available_cards,min(5, len(available_cards)))
+
+
+            for index, card_id in enumerate(selected_available_cards, start=1):
+                print(f"{index}. {card_id.name}")
+
+            while True:
+
+                choice = input("\nWhich card would you like to remove? ").strip().lower()
+
+                # This checks if the user wants information about the card
+                if choice.startswith("i"):
+
+                    number = choice[1:]
+
+                    if number.isdigit():
+
+                        index = int(number)
+
+                        if 1 <= index <= len(selected_available_cards):
+
+                            card_id = selected_available_cards[index - 1]
+
+                            card = user.deck.cards[card_id]["basic"]
+
+                            print()
+                            print(card)
+                            print()
+
+                            continue
+
+                    print("Invalid card number.")
+                    continue
+
+                # Normal card selection
+                if choice.isdigit():
+
+                    index = int(choice)
+
+                    if 1 <= index <= len(selected_available_cards):
+
+                        selected_card = selected_available_cards[index - 1]
+
+                        user.deck.remove_card(selected_card)
+
+                        print(f"{selected_card.name} has been removed from your deck!")
+
+                        break
+
+                print("Please enter a valid card number or i<number>.")
+
+# This function will happen after a user successsfuly gets through a floor of combar 
+# It will cleanup money for the user, heal, and offer a deck change
+def reward(user):
+    user.cleanup_gold()
+
+    # Every cleared floor the user will heal up 5 hp
+    user.heal(5)
+    print(f"{user.name} healed 5 hp")
+
+    # let user know funding before going through shops and whatnot
+    print(f"\nYou currently have {user.gold} gold")
+
+    add_card(user)
+
+    upgrade_card(user)
+   
+    remove_card(user)
+
+    # cleans up screen after reward
+    clear_terminal()
