@@ -60,11 +60,17 @@ class Player:
 
         print(f"{enemy} delt {amount} damage to {self.name}")
         
+
+        if self.hp < 0:
+            self.hp = 0
+
         # I only want the user informed if they still have block left
         if self.block>0:
             self.combat_state()
 
-
+    def player_dead(self):
+        return self.hp == 0 
+    
     # this is the function that actually playst the card in the player combat system 
     def play_card(self, position, enemy):
         card_played = self.deck.play_card_from_hand(position)
