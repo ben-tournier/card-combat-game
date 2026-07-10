@@ -23,6 +23,62 @@
       "block": 0,
       "value": 4,
       "behavior": "attack"
+    },
+    {
+      "name": "Dire Wolf",
+      "hp": 22,
+      "damage": 6,
+      "block": 0,
+      "value": 5,
+      "behavior": "attack"
+    },
+    {
+      "name": "Skeleton",
+      "hp": 25,
+      "damage": 4,
+      "block": 2,
+      "value": 5,
+      "behavior": "defend_attack"
+    },
+    {
+      "name": "Bandit",
+      "hp": 30,
+      "damage": 7,
+      "block": 0,
+      "value": 6,
+      "behavior": "attack"
+    },
+    {
+      "name": "Troll",
+      "hp": 40,
+      "damage": 8,
+      "block": 0,
+      "value": 8,
+      "behavior": "attack"
+    },
+    {
+      "name": "Stone Golem",
+      "hp": 55,
+      "damage": 6,
+      "block": 8,
+      "value": 10,
+      "behavior": "defend_attack"
+    },
+    {
+      "name": "Dark Knight",
+      "hp": 65,
+      "damage": 10,
+      "block": 5,
+      "value": 12,
+      "behavior": "defend_attack"
+    },
+    {
+      "name": "Wraith",
+      "hp": 45,
+      "damage": 12,
+      "block": 0,
+      "value": 12,
+      "behavior": "attack"
     }
   ],
 
@@ -33,6 +89,38 @@
       "damage": 6,
       "block": 3,
       "value": 5,
+      "behavior": "defend_attack"
+    },
+    {
+      "name": "Elite Troll",
+      "hp": 75,
+      "damage": 12,
+      "block": 5,
+      "value": 15,
+      "behavior": "defend_attack"
+    },
+    {
+      "name": "Ancient Guardian",
+      "hp": 100,
+      "damage": 10,
+      "block": 10,
+      "value": 20,
+      "behavior": "defend_attack"
+    },
+    {
+      "name": "Shadow Assassin",
+      "hp": 70,
+      "damage": 15,
+      "block": 0,
+      "value": 20,
+      "behavior": "attack"
+    },
+    {
+      "name": "Corrupted Knight",
+      "hp": 120,
+      "damage": 14,
+      "block": 3,
+      "value": 25,
       "behavior": "defend_attack"
     }
   ],
@@ -45,6 +133,30 @@
       "block": 5,
       "value": 10,
       "behavior": "multi_attack"
+    },
+    {
+      "name": "Ancient Dragon",
+      "hp": 200,
+      "damage": 18,
+      "block": 10,
+      "value": 50,
+      "behavior": "multi_attack"
+    },
+    {
+      "name": "Demon Lord",
+      "hp": 250,
+      "damage": 20,
+      "block": 15,
+      "value": 60,
+      "behavior": "multi_attack"
+    },
+    {
+      "name": "Titan",
+      "hp": 300,
+      "damage": 25,
+      "block": 20,
+      "value": 75,
+      "behavior": "defend_attack"
     }
   ]
 }

@@ -16,3 +16,5 @@ Run the main file
 - More enemies 
 - More Cards
 - Save file 
+- Player death system
+- Limited card viewing when upgrading

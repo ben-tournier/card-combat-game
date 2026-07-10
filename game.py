@@ -1,6 +1,14 @@
+import time
 from player import Player
 from enemy_creation.enemy import Enemy
 from enemy_creation.enemy_pool import generate_encounter
+
+# Used to clear terminal and keep things clean throughout
+import os
+
+def clear_terminal():
+    time.sleep(.5)
+    os.system("cls")
 
 # This functin gets everything organized at the beginning creating player object and getting name
 def startup():
@@ -12,6 +20,8 @@ def startup():
 def check_index(user):
     while True:
         choice = input("\nWhich card would you like to play? ").strip().lower()
+
+        clear_terminal()
 
         # This checks if the user asked for information about the card 
         if choice.startswith("i"):
@@ -205,13 +215,6 @@ def reward(user):
 
 
 
-
-
-
-
-
-
-
     """
     does the user want to upgrade a card? (probably...) and then gives the user all the cards in the deck that can be upgraded
     this section will work a lot like the one above where it will print out the deck that the user currently has and allow them to chose which card they want to upgrade
@@ -277,6 +280,8 @@ def reward(user):
     if get_valid_input("Would you like to remove a card?"):
         print("Not implemented yet.")
 
+    # cleans up screen after reward
+    clear_terminal()
 
 
 def run():
@@ -284,14 +289,21 @@ def run():
     current_floor = 1
 
     while True:
+        print(f"\n======= Floor {current_floor} =======")
+
         enemies = generate_encounter(current_floor)
         enemies_alive =  True 
 
         while enemies_alive:
             enemies_alive = combat(user, enemies)
         
+        #cleanup after combat 
+        clear_terminal()
+
+        #go to reward system
         reward(user)
         
+        #next floor
         current_floor += 1 
 
     
