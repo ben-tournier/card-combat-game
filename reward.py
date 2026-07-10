@@ -82,7 +82,6 @@ def add_card(user):
 
             print("Please enter a valid card number or i#")
 
-
 """
 does the user want to upgrade a card? (probably...) and then gives the user all the cards in the deck that can be upgraded
 this section will work a lot like the one above where it will print out the deck that the user currently has and allow them to chose which card they want to upgrade
@@ -97,7 +96,7 @@ def upgrade_card(user):
         available_cards = user.deck.get_random_cards(5)
 
         for index, card in enumerate(available_cards, start=1):
-            print(f"[{index}]. {card.name}")
+            print(f"{index}. {card.name}")
 
         while True:
             choice = input("\nWhich card would you like to upgrade? ").strip().lower()
@@ -142,7 +141,10 @@ def upgrade_card(user):
 
             print("Please enter a valid card index")
 
-
+"""
+asks the user if they want to remove a card from their deck to make it more likely to draw something better
+will then present the full deck list and ask which one to remove from it
+"""
 def remove_card(user):
     if len(user.deck.get_full_deck()) <= 5:
         print("Your deck is too small to remove another card")

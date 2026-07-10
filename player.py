@@ -51,22 +51,26 @@ class Player:
     def take_damage(self, enemy):
         amount = enemy.get_damage()
 
+        if self.block>0:
+            self.combat_state()
+
         if amount > self.block:
-            amount -= self.block
+            amount_through = amount - self.block
             self.block = 0
-            self.hp -= amount 
+            self.hp -= amount_through
         else:
             self.block -= amount
 
         print(f"{enemy} delt {amount} damage to {self.name}")
+
+        if amount_through > 0:
+            print(f"{amount_through} set {self.name}'s HP down to {self.hp}")
         
 
         if self.hp < 0:
             self.hp = 0
 
-        # I only want the user informed if they still have block left
-        if self.block>0:
-            self.combat_state()
+
 
     def player_dead(self):
         return self.hp == 0 

@@ -21,5 +21,8 @@ class Enemy:
     def check_attack(self):
         return self.behavior == "attack"
     
+    def check_block(self):
+        return self.block
+    
     def __repr__(self):
         return f"{self.name} (HP: {self.hp} / {self.max_hp})"

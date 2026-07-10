@@ -1,19 +1,33 @@
 from utilities.check_index import check_index
+import os, time
+
+def clear_terminal():
+    time.sleep(.5)
+    os.system("cls")
+
 
 # This function carries a lot of the real weight for the actual game loop
 # The start of the turn, end of the turn, and combat itself are all kept inside of here
 def combat(user, enemies):
-    user.start_of_turn()
+    user.deck.draw_hand()
     
     # The outside for loop is what both allows the player and limits them to playing 3 cards each turn 
     for card in range(3):
+        
+        # the location of this clear terminal call will wipe the board clean right before reanouncing what the user is playing against
+        # it should wipe the text every time that a card has been played
+        clear_terminal()
+        
         user.combat_state()
 
         print("\n You are facing:")
         # This will pring out all enemies individually with an associated number but only if they are still alive
         for index, enemy in enumerate(enemies): 
             if enemy.is_alive():
-                print(f"{index + 1}: {enemy}")
+                if enemy.check_block() > 0:
+                    print(f"{index + 1}: {enemy} and has: {enemy.check_block()} block")
+                else:
+                    print(f"{index + 1}: {enemy}")
 
         print("\n Your cards in hand: \n" + user.relay_cards_in_hand())
 
@@ -40,7 +54,6 @@ def combat(user, enemies):
 
             user.play_card(card_choice, target)
 
-
         else:
             user.play_card(card_choice, None)
 
@@ -63,6 +76,10 @@ def combat(user, enemies):
         if enemy.is_alive():
             if enemy.check_attack():
                 user.take_damage(enemy)
+
+    # this may seem backwards putting it at the end however it works better for the terminal looking good
+    # this is when the block is all removed and it take place after any damage that would be delt has been delt by the enemies
+    user.start_of_turn()
 
     # this should break out of the combat system if the player dies
     if user.player_dead():

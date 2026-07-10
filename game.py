@@ -1,7 +1,7 @@
-import time, random
+import time
 from player import Player
-from enemy_creation.enemy import Enemy
 from enemy_creation.enemy_pool import generate_encounter
+from utilities.floor_view import floor_display
 from combat import combat
 from reward import reward
 # Used to clear terminal and keep things clean throughout
@@ -12,7 +12,7 @@ def clear_terminal():
     time.sleep(.5)
     os.system("cls")
 
-# This functin gets everything organized at the beginning creating player object and getting name
+# This function gets everything organized at the beginning creating player object and getting name
 def startup():
     name = input("Hello there, what name would you like to use? ")
     user = Player(name)
@@ -24,7 +24,10 @@ def run():
     current_floor = 1
 
     while True:
-        print(f"\n======= Floor {current_floor} =======")
+
+        floor_display(current_floor)
+
+        time.sleep(2)
 
         enemies = generate_encounter(current_floor)
         enemies_alive =  True 
