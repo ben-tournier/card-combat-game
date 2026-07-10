@@ -17,4 +17,4 @@ Run the main file
 - More Cards
 - Save file 
 - Player death system
-- Limited card viewing when upgrading
+- changing to turn based mana system over 3 card a turn system

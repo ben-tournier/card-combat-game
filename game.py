@@ -1,4 +1,4 @@
-import time
+import time, random
 from player import Player
 from enemy_creation.enemy import Enemy
 from enemy_creation.enemy_pool import generate_encounter
@@ -140,14 +140,9 @@ def reward(user):
     # let user know funding before going through shops and whatnot
     print(f"\nYou currently have {user.gold} gold")
 
-
-
-
-
     """
     figures out if the user would like to add a card or not - not always, sometimes thinner deck can be better
     this chunk is going to print out all of the availible cards in a list for the user to chose from - same as combat 'i#' will give info about that #
-
     
     """
     if get_valid_input("Would you like to add a card?"):
@@ -161,13 +156,21 @@ def reward(user):
             # This prevents the starter cards from being shown
             if card_id > 3:
                 available_cards.append(card_id)
-                print(f"{len(available_cards)}. {versions['basic'].name}")
 
+        # This only allows the user to have 3 cards to choose from when adding to the deck
+        # The cards are always randomly chosen but always unique from the list of availible cards
+        selected_available_cards = random.sample(
+            available_cards,
+            min(3, len(available_cards))
+        )
+
+        # Every time a valid card is found and added to the list it will be printed and offered to the user
+        for index, card_id in enumerate(selected_available_cards, start=1):
+            print(f"{index}. {user.deck.cards[card_id]['basic'].name}")
 
         while True:
 
             choice = input("\nWhich card would you like to add? ").strip().lower()
-
 
             # This checks if the user wants information about the card
             if choice.startswith("i"):
@@ -178,9 +181,9 @@ def reward(user):
 
                     index = int(number)
 
-                    if 1 <= index <= len(available_cards):
+                    if 1 <= index <= len(selected_available_cards):
 
-                        card_id = available_cards[index - 1]
+                        card_id = selected_available_cards[index - 1]
 
                         card = user.deck.cards[card_id]["basic"]
 
@@ -193,16 +196,14 @@ def reward(user):
                 print("Invalid card number.")
                 continue
 
-
-
             # Normal card selection
             if choice.isdigit():
 
                 index = int(choice)
 
-                if 1 <= index <= len(available_cards):
+                if 1 <= index <= len(selected_available_cards):
 
-                    card_id = available_cards[index - 1]
+                    card_id = selected_available_cards[index - 1]
 
                     user.deck.add_card(card_id)
 
@@ -210,10 +211,7 @@ def reward(user):
 
                     break
 
-
             print("Please enter a valid card number or i<number>.")
-
-
 
     """
     does the user want to upgrade a card? (probably...) and then gives the user all the cards in the deck that can be upgraded
@@ -223,9 +221,11 @@ def reward(user):
     if get_valid_input("Would you like to upgrade a card?"):
 
         print("\nYour Deck:")
-        print(user.deck.show_full_deck())
 
-        deck = user.deck.get_full_deck()
+        available_cards = user.deck.get_random_cards(5)
+
+        for index, card in enumerate(available_cards, start=1):
+            print(f"[{index}]. {card.name}")
 
         while True:
             choice = input("\nWhich card would you like to upgrade? ").strip().lower()
@@ -238,9 +238,9 @@ def reward(user):
                 if number.isdigit():
                     index = int(number)
 
-                    if 1 <= index <= len(deck):
+                    if 1 <= index <= len(available_cards):
 
-                        card = deck[index - 1]
+                        card = available_cards[index - 1]
 
                         upgraded_card = user.deck.cards[card.card_id]["upgraded"]
 
@@ -254,27 +254,21 @@ def reward(user):
                 print("Invalid card number.")
                 continue
 
-
             # Normal card selection
             if choice.isdigit():
 
                 index = int(choice)
 
-                if 1 <= index <= len(deck):
+                if 1 <= index <= len(available_cards):
 
-                    selected_card = deck[index - 1]
+                    selected_card = available_cards[index - 1]
 
                     user.deck.upgrade_card(selected_card)
 
                     print(f"{selected_card.name} has been upgraded!")
                     break
 
-
             print("Please enter a valid card index")
-
-
-
-
 
     # this function is still being worked out but will eventually allow for the deck to be shaped how the user wants it to be
     if get_valid_input("Would you like to remove a card?"):

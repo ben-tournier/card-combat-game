@@ -126,8 +126,8 @@ class BattleDeck:
             output.append(f"{index}. {card.name}")
 
         return "\n".join(output)
-
-
+    
+    
     def get_full_deck(self):
         full_deck = []
 
@@ -137,4 +137,18 @@ class BattleDeck:
 
         return full_deck
 
-        
+
+
+    def get_random_cards(self, num):
+
+        available_cards = []
+
+        for card in self.get_full_deck():
+
+            if "+" not in card.name:
+                available_cards.append(card)
+
+        if len(available_cards) <= num:
+            return available_cards
+
+        return random.sample(available_cards, num)
