@@ -15,5 +15,5 @@
 
 ## Future Improvements
 - Enemy AI advancements 
-- Enemy Variety 
+- More enemy Variety 
 - Multi-phase bosses

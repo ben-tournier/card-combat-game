@@ -15,6 +15,6 @@
 3. Enemies are grouped together based on difficulty 
 
 ## Future Improvements
-- Enemy AI advancements 
-- Enemy Variety 
-- Multi-phase bosses
+- other card actions like adding energy or stunning an enemy 
+- More card variety
+- Multi-phase upgrades for cards

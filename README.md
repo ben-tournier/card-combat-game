@@ -12,9 +12,9 @@ This is a terminal based combat game centered around deck construction and comba
 Run the main file
 
 ## Future Improvements
-- more in depth reward system 
 - More enemies 
 - More Cards
 - Save file 
 - Player death system
 - changing to turn based mana system over 3 card a turn system
+- Improve reward removal system 

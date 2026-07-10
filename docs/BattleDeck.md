@@ -5,6 +5,8 @@
 - Includes start/end of turn methods that draw and discard hand
 - Holds code to return the hand 
 - Also holds the method of the card playing although actual call is in player class
+- Deck upgrade functions are availible and occur within teh reward system
+
 
 ## Future Improvements
-- Ways to upgrade the deck and the cards within it
+- more deck manipulation options
