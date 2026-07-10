@@ -156,12 +156,9 @@ def remove_card(user):
 
             available_cards = user.deck.get_full_deck()
 
-            # This only allows the user to have 3 cards to choose from when adding to the deck
-            # The cards are always randomly chosen but always unique from the list of availible cards
-            selected_available_cards = random.sample(available_cards,min(5, len(available_cards)))
 
 
-            for index, card_id in enumerate(selected_available_cards, start=1):
+            for index, card_id in enumerate(available_cards, start=1):
                 print(f"{index}. {card_id.name}")
 
             while True:
@@ -177,9 +174,9 @@ def remove_card(user):
 
                         index = int(number)
 
-                        if 1 <= index <= len(selected_available_cards):
+                        if 1 <= index <= len(available_cards):
 
-                            card_id = selected_available_cards[index - 1]
+                            card_id = available_cards[index - 1]
 
                             card = user.deck.cards[card_id]["basic"]
 
@@ -197,9 +194,9 @@ def remove_card(user):
 
                     index = int(choice)
 
-                    if 1 <= index <= len(selected_available_cards):
+                    if 1 <= index <= len(available_cards):
 
-                        selected_card = selected_available_cards[index - 1]
+                        selected_card = available_cards[index - 1]
 
                         user.deck.remove_card(selected_card)
 
