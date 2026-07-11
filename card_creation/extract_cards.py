@@ -9,6 +9,7 @@ def build_card(card_data, cardid):
         name=card_data["name"],
         card_type=card_data["type"],
         card_id=cardid,
+        gold_cost=card_data["gold"],
         damage=card_data.get("damage", 0),
         block=card_data.get("block", 0),
         cost=card_data["cost"]

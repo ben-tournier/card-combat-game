@@ -12,7 +12,7 @@ class Player:
         self.deck.shuffle_deck()
         self.hp = 25
         self.block = 0
-        self.gold = 10
+        self.gold = 20
         self.money_pool = 0
 
     def combat_state(self):

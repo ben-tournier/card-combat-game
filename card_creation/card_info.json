@@ -7,14 +7,16 @@
         "type": "attack",
         "damage": 5,
         "block": 0,
-        "cost": 1
+        "cost": 1,
+        "gold": 15
       },
       "upgraded": {
         "name": "Strike+",
         "type": "attack",
         "damage": 8,
         "block": 0,
-        "cost": 1
+        "cost": 1,
+        "gold": 30
       }
     },
     {
@@ -24,14 +26,16 @@
         "type": "defend",
         "damage": 0,
         "block": 3,
-        "cost": 1
+        "cost": 1,
+        "gold": 15
       },
       "upgraded": {
         "name": "Shield+",
         "type": "defend",
         "damage": 0,
         "block": 6,
-        "cost": 1
+        "cost": 1,
+        "gold": 30
       }
     },
     {
@@ -41,14 +45,16 @@
         "type": "stun",
         "damage": 2,
         "block": 0,
-        "cost": 1
+        "cost": 1,
+        "gold": 20
       },
       "upgraded": {
         "name": "Hypnotize+",
         "type": "stun",
         "damage": 4,
         "block": 0,
-        "cost": 1
+        "cost": 1,
+        "gold": 40
       }
     },
     {
@@ -58,14 +64,16 @@
         "type": "attack",
         "damage": 9,
         "block": 0,
-        "cost": 2
+        "cost": 2,
+        "gold": 15
       },
       "upgraded": {
         "name": "Heavy Strike+",
         "type": "attack",
         "damage": 13,
         "block": 0,
-        "cost": 2
+        "cost": 2,
+        "gold": 60
       }
     },
     {
@@ -75,14 +83,16 @@
         "type": "attack",
         "damage": 3,
         "block": 0,
-        "cost": 0
+        "cost": 0,
+        "gold": 6
       },
       "upgraded": {
         "name": "Quick Jab+",
         "type": "attack",
         "damage": 5,
         "block": 0,
-        "cost": 0
+        "cost": 0,
+        "gold": 45
       }
     },
     {
@@ -92,14 +102,16 @@
         "type": "defend",
         "damage": 0,
         "block": 7,
-        "cost": 2
+        "cost": 2,
+        "gold": 15
       },
       "upgraded": {
         "name": "Fortify+",
         "type": "defend",
         "damage": 0,
         "block": 11,
-        "cost": 2
+        "cost": 2,
+        "gold": 70
       }
     },
     {
@@ -109,14 +121,16 @@
         "type": "attack",
         "damage": 7,
         "block": 0,
-        "cost": 2
+        "cost": 2,
+        "gold": 7
       },
       "upgraded": {
         "name": "Bash+",
         "type": "attack",
         "damage": 10,
         "block": 0,
-        "cost": 2
+        "cost": 2,
+        "gold": 55
       }
     },
     {
@@ -126,14 +140,16 @@
         "type": "utility",
         "damage": 0,
         "block": 0,
-        "cost": 0
+        "cost": 0,
+        "gold": 3
       },
       "upgraded": {
         "name": "Adrenaline+",
         "type": "utility",
         "damage": 0,
-        "block": 0,
-        "cost": 0
+        "block": 5,
+        "cost": 0,
+        "gold": 80
       }
     },
     {
@@ -143,14 +159,16 @@
         "type": "attack",
         "damage": 4,
         "block": 3,
-        "cost": 1
+        "cost": 1,
+        "gold": 8
       },
       "upgraded": {
         "name": "Reinforce+",
         "type": "attack",
         "damage": 6,
         "block": 5,
-        "cost": 1
+        "cost": 1,
+        "gold": 65
       }
     }
   ]

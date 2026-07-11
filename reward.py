@@ -14,73 +14,89 @@ this chunk is going to print out all of the availible cards in a list for the us
 """
 def add_card(user):
 
-    if get_valid_input("Would you like to add a card?"):
+    available_cards = []
 
-        print("\nAvailable Cards:")
+    for card_id, versions in user.deck.cards.items():
 
-        available_cards = []
+        # This prevents the starter cards from being shown
+        if card_id > 3:
+            available_cards.append(card_id)
 
-        for card_id, versions in user.deck.cards.items():
+    # This only allows the user to have 3 cards to choose from when adding to the deck
+    # The cards are always randomly chosen but always unique from the list of availible cards
+    selected_available_cards = random.sample(
+        available_cards,
+        min(3, len(available_cards)))
 
-            # This prevents the starter cards from being shown
-            if card_id > 3:
-                available_cards.append(card_id)
+    card_gold_price = []
 
-        # This only allows the user to have 3 cards to choose from when adding to the deck
-        # The cards are always randomly chosen but always unique from the list of availible cards
-        selected_available_cards = random.sample(
-            available_cards,
-            min(3, len(available_cards))
-        )
+    for card_id in selected_available_cards:
+        card_gold_price.append(user.deck.cards[card_id]['basic'].gold_cost)
 
-        # Every time a valid card is found and added to the list it will be printed and offered to the user
-        for index, card_id in enumerate(selected_available_cards, start=1):
-            print(f"{index}. {user.deck.cards[card_id]['basic'].name}")
+    able_to_purchase = False
 
-        while True:
+    if user.gold > min(card_gold_price):
+        able_to_purchase = True
+    
 
-            choice = input("\nWhich card would you like to add? ").strip().lower()
 
-            # This checks if the user wants information about the card
-            if choice.startswith("i"):
+    if able_to_purchase:
+        if get_valid_input("Would you like to add a card?"):
 
-                number = choice[1:]
+            print("\nAvailable Cards:")
 
-                if number.isdigit():
 
-                    index = int(number)
+
+            # Every time a valid card is found and added to the list it will be printed and offered to the user
+            for index, card_id in enumerate(selected_available_cards, start=1):
+                print(f"{index}. {user.deck.cards[card_id]['basic'].name} costs {user.deck.cards[card_id]['basic'].gold_cost} gold and uses {user.deck.cards[card_id]['basic'].cost} energy")
+
+            while True:
+
+                choice = input("\nWhich card would you like to add? ").strip().lower()
+
+                # This checks if the user wants information about the card
+                if choice.startswith("i"):
+
+                    number = choice[1:]
+
+                    if number.isdigit():
+
+                        index = int(number)
+
+                        if 1 <= index <= len(selected_available_cards):
+
+                            card_id = selected_available_cards[index - 1]
+
+                            card = user.deck.cards[card_id]["basic"]
+
+                            print()
+                            print(card)
+                            print()
+
+                            continue
+
+                    print("Invalid card number.")
+                    continue
+
+                # Normal card selection
+                if choice.isdigit():
+
+                    index = int(choice)
 
                     if 1 <= index <= len(selected_available_cards):
 
                         card_id = selected_available_cards[index - 1]
 
-                        card = user.deck.cards[card_id]["basic"]
+                        card = user.deck.add_card(card_id)
 
-                        print()
-                        print(card)
-                        print()
+                        user.gold -= (user.deck.cards[card_id]['basic'].gold_cost)
 
-                        continue
+                        print(f"{user.deck.cards[card_id]['basic'].name} has been added to your deck!")
 
-                print("Invalid card number.")
-                continue
+                        break
 
-            # Normal card selection
-            if choice.isdigit():
-
-                index = int(choice)
-
-                if 1 <= index <= len(selected_available_cards):
-
-                    card_id = selected_available_cards[index - 1]
-
-                    user.deck.add_card(card_id)
-
-                    print(f"{user.deck.cards[card_id]['basic'].name} has been added to your deck!")
-
-                    break
-
-            print("Please enter a valid card number or i#")
+                print("Please enter a valid card number or i#")
 
 """
 does the user want to upgrade a card? (probably...) and then gives the user all the cards in the deck that can be upgraded

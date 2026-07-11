@@ -1,7 +1,8 @@
 class Card:
 
-    def __init__(self, card_id, name, card_type, cost, damage, block):
+    def __init__(self, card_id, gold_cost, name, card_type, cost, damage, block):
         self.card_id = card_id
+        self.gold_cost = gold_cost
         self.name = name
         self.card_type = card_type
         self.cost = cost

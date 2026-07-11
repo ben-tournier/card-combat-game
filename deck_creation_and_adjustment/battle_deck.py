@@ -114,9 +114,7 @@ class BattleDeck:
 
 
     def add_card(self, card_id):
-        self.discard_pile.append(
-            deepcopy(self.cards[card_id]["basic"])
-        )
+        return self.discard_pile.append(deepcopy(self.cards[card_id]["basic"]))
 
     def upgrade_card(self, card):
         upgraded = self.cards[card.card_id]["upgraded"]
