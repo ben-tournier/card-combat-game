@@ -137,7 +137,7 @@
       "cardid": 8,
       "basic": {
         "name": "Adrenaline",
-        "type": "utility",
+        "type": "cycle",
         "damage": 0,
         "block": 0,
         "cost": 0,
@@ -145,9 +145,9 @@
       },
       "upgraded": {
         "name": "Adrenaline+",
-        "type": "utility",
+        "type": "cycle",
         "damage": 0,
-        "block": 5,
+        "block": 3,
         "cost": 0,
         "gold": 80
       }

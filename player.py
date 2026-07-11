@@ -75,30 +75,45 @@ class Player:
     def player_dead(self):
         return self.hp == 0 
     
+
+    
     # this is the function that actually playst the card in the player combat system 
     def play_card(self, position, enemy):
         card_played = self.deck.play_card_from_hand(position)
 
         if card_played is None:
             return "Invalid card choice"
-        
+
         print(f"Playing {card_played.name}")
 
         actions_from_card = []
 
-        # this part gets a little complicated as it refers to the card class to figure out the type and bases the next part off of that
-        if not enemy == None :
-            
+        # Cycle cards draw another card and can provide other bonuses
+        if card_played.card_type == "cycle":
+            self.deck.draw_card()
+            actions_from_card.append("Drawing another card")
+
+        # Damage cards
+        if enemy is not None and card_played.damage > 0:
+
             enemy.take_damage(card_played.damage)
-            actions_from_card.append(f"\ndealing {card_played.damage} damage to {enemy}")
-            
+
+            actions_from_card.append(
+                f"dealing {card_played.damage} damage to {enemy}"
+            )
+
             if not enemy.is_alive():
                 actions_from_card.append(f"{enemy.name} has been killed")
                 self.money_pool += enemy.value
 
+        # Block cards
         if card_played.block > 0:
+
             self.gain_block(card_played.block)
-            actions_from_card.append(f"gaining {card_played.block} block")
+
+            actions_from_card.append(
+                f"gaining {card_played.block} block"
+            )
 
         for string in actions_from_card:
             print(string)
