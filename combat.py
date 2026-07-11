@@ -10,7 +10,6 @@ def clear_terminal():
 # The start of the turn, end of the turn, and combat itself are all kept inside of here
 def combat(user, enemies):
     user.deck.draw_hand()
-    
     # The outside for loop is what both allows the player and limits them to playing 3 cards each turn 
     for card in range(3):
         
@@ -63,23 +62,21 @@ def combat(user, enemies):
             if enemy.is_alive():
                 enemies_alive += 1
 
-            if enemies_alive == 0:
-                user.end_of_turn()
-                return False
+        if enemies_alive == 0:
+            user.end_of_turn()
+            return False 
         
     # This is the point after the user has played all of the cards in hand
     user.end_of_turn()
 
-    print("Enemies turn")
 
     for enemy in enemies: 
         if enemy.is_alive():
             if enemy.check_attack():
                 user.take_damage(enemy)
 
-    # this may seem backwards putting it at the end however it works better for the terminal looking good
-    # this is when the block is all removed and it take place after any damage that would be delt has been delt by the enemies
-    user.start_of_turn()
+
+    user.remove_all_block()
 
     # this should break out of the combat system if the player dies
     if user.player_dead():

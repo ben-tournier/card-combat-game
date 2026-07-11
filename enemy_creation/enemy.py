@@ -11,6 +11,9 @@ class Enemy:
     def take_damage(self, amount):
         effective_damage = max(0, amount - self.block)
         self.hp -= effective_damage
+        
+        if effective_damage > 0:
+            self.block = 0
 
     def is_alive(self):
         return self.hp > 0
@@ -19,7 +22,7 @@ class Enemy:
         return self.damage
     
     def check_attack(self):
-        return self.behavior == "attack"
+        return "attack" in self.behavior
     
     def check_block(self):
         return self.block

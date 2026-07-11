@@ -19,11 +19,10 @@ class Player:
         print(f"\nYou currently have {self.block} block and {self.hp} hp")
 
         # ------------- Hand functions -------------
-    def start_of_turn(self):
+    def remove_all_block(self):
         if self.block > 0:
             print("Removing all block")
         self.block = 0
-        self.deck.draw_hand()
 
     def relay_cards_in_hand(self):
         return self.deck.show_hand()
@@ -49,6 +48,7 @@ class Player:
         return f"{self.name} healed up to {self.hp} hp"
 
     def take_damage(self, enemy):
+        amount_through = 0
         amount = enemy.get_damage()
 
         if self.block>0:
