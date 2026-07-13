@@ -14,6 +14,7 @@ class Player:
         self.block = 0
         self.gold = 20
         self.money_pool = 0
+        self.energy = 0 
 
     def combat_state(self):
         print(f"\nYou currently have {self.block} block and {self.hp} hp")
@@ -32,6 +33,8 @@ class Player:
     def end_of_turn(self):
         print("Discarding Hand... \n")
         self.deck.discard_hand()
+
+        # ------------- Energy functions -------------
 
         # ------------- Combat functions -------------
     def check_card_type(self, index):

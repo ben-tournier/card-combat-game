@@ -75,6 +75,7 @@ def combat(user, enemies):
             if enemy.check_attack():
                 user.take_damage(enemy)
 
+    time.sleep(2)
 
     user.remove_all_block()
 
