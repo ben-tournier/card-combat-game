@@ -14,7 +14,7 @@ def clear_terminal():
 
 # This function gets everything organized at the beginning creating player object and getting name
 def startup():
-    name = input("What is your name warrior?  ")
+    name = input("What shall I call you?  ")
     user = Player(name)
     return user
 
@@ -51,4 +51,4 @@ def run():
 
     
 
-# run()
+run()

@@ -68,12 +68,20 @@ class BattleDeck:
         self.hand.clear()
 
         #--------------- gameplay ---------------
+    def get_card(self, index):
+        if 0 <= index < len(self.hand):
+            return self.hand[index]
+        return None
 
     def get_type(self, index):
         return self.hand[index].card_type
 
     def get_damage(self, index):
         return self.hand[index].damage > 0
+    
+    def get_energy(self, index):
+        print("didit")
+        return self.hand[index].cost 
 
     def show_hand(self):
         if len(self.hand) == 0:

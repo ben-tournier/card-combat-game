@@ -10,14 +10,19 @@ def clear_terminal():
 # The start of the turn, end of the turn, and combat itself are all kept inside of here
 def combat(user, enemies):
     user.deck.draw_hand()
+
+    user.fill_energy()
+    print(f"Energy has been set to {user.max_energy} energy.")
     # The outside for loop is what both allows the player and limits them to playing 3 cards each turn 
-    for card in range(3):
+    while user.energy > 0:
         
         # the location of this clear terminal call will wipe the board clean right before reanouncing what the user is playing against
         # it should wipe the text every time that a card has been played
         clear_terminal()
         
         user.combat_state()
+
+        print(f"\n You currently have {user.current_energy()} energy ")
 
         print("\n You are facing:")
         # This will pring out all enemies individually with an associated number but only if they are still alive

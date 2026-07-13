@@ -14,7 +14,10 @@ class Player:
         self.block = 0
         self.gold = 20
         self.money_pool = 0
-        self.energy = 0 
+        self.energy = 0
+
+        # This variable is here because potential later upgrade system increases amount of energy
+        self.max_energy = 3
 
     def combat_state(self):
         print(f"\nYou currently have {self.block} block and {self.hp} hp")
@@ -27,19 +30,33 @@ class Player:
 
     def relay_cards_in_hand(self):
         return self.deck.show_hand()
-    
 
-    # may eventually be extended to add in removal of all temporary effects 
+    # may eventually be extended to add in removal of all temporary effects
     def end_of_turn(self):
         print("Discarding Hand... \n")
         self.deck.discard_hand()
 
         # ------------- Energy functions -------------
+    def fill_energy(self):
+        self.energy = self.max_energy
+
+    def energy_left(self):
+        return self.energy > 0
+
+    def current_energy(self):
+        return self.energy
+
+    def check_energy_amount(self, cost):
+        return self.energy >= cost
+
+    def charge_energy(self, amount):
+        self.energy -= amount
+        return self.energy
 
         # ------------- Combat functions -------------
     def check_card_type(self, index):
         return self.deck.get_type(index)
-    
+
     def check_card_damage(self, index):
         return self.deck.get_damage(index)
 
@@ -54,7 +71,7 @@ class Player:
         amount_through = 0
         amount = enemy.get_damage()
 
-        if self.block>0:
+        if self.block > 0:
             self.combat_state()
 
         if amount > self.block:
@@ -68,26 +85,32 @@ class Player:
 
         if amount_through > 0:
             print(f"{amount_through} set {self.name}'s HP down to {self.hp}")
-        
 
         if self.hp < 0:
             self.hp = 0
 
-
-
     def player_dead(self):
-        return self.hp == 0 
-    
+        return self.hp == 0
 
-    
-    # this is the function that actually playst the card in the player combat system 
-    def play_card(self, position, enemy):
-        card_played = self.deck.play_card_from_hand(position)
+    # this is the function that actually playst the card in the player combat system
+    def play_card(self, index, enemy):
+
+        card_played = self.deck.get_card(index)
 
         if card_played is None:
             return "Invalid card choice"
 
-        print(f"Playing {card_played.name}")
+        energy_cost = card_played.cost
+
+        if not self.check_energy_amount(energy_cost):
+            print(f"Sorry {card_played.name} requires {energy_cost} energy.")
+            return
+
+        self.charge_energy(energy_cost)
+
+        card_played = self.deck.play_card_from_hand(index)
+
+        print(f"Playing {card_played.name} for {energy_cost} energy")
 
         actions_from_card = []
 
@@ -121,6 +144,7 @@ class Player:
         for string in actions_from_card:
             print(string)
 
+
         # ------------- Spending Functions -------------
     def cleanup_gold(self):
         self.gold += self.money_pool
@@ -130,10 +154,9 @@ class Player:
         if amount > self.gold:
             return False
         return True
-    
+
     def gain_gold(self, amount):
-        self.gold += amount 
+        self.gold += amount
 
     def __repr__(self):
         return f"Player(HP={self.hp}, Block={self.block}, Gold={self.gold})"
-    
