@@ -81,21 +81,21 @@ def add_card(user):
 
                 # Normal card selection
                 if choice.isdigit():
-
                     index = int(choice)
 
                     if 1 <= index <= len(selected_available_cards):
+                        if card_gold_price[index-1] <= user.gold:
 
-                        card_id = selected_available_cards[index - 1]
+                            card_id = selected_available_cards[index - 1]
 
-                        card = user.deck.add_card(card_id)
+                            card = user.deck.add_card(card_id)
 
-                        user.gold -= (user.deck.cards[card_id]['basic'].gold_cost)
+                            user.gold -= (user.deck.cards[card_id]['basic'].gold_cost)
 
-                        print(f"{user.deck.cards[card_id]['basic'].name} has been added to your deck!")
+                            print(f"{user.deck.cards[card_id]['basic'].name} has been added to your deck!")
 
-                        break
-
+                            break
+                    print("Sorry, You do not have enough gold for that. ")
                 print("Please enter a valid card number or i#")
 
 """

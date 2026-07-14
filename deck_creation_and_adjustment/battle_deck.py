@@ -89,7 +89,7 @@ class BattleDeck:
 
         output = []
         for index, card in enumerate(self.hand, start=1):
-            output.append(f"{index}. {card.name}")
+            output.append(f"{index}. {card.name} [{card.cost}] energy")
 
         return "\n".join(output)
 
@@ -119,7 +119,6 @@ class BattleDeck:
             return True
 
         return False
-
 
     def add_card(self, card_id):
         return self.discard_pile.append(deepcopy(self.cards[card_id]["basic"]))
