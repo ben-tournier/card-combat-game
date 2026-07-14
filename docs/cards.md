@@ -15,6 +15,6 @@
 3. Enemies are grouped together based on difficulty 
 
 ## Future Improvements
-- other card actions like adding energy or stunning an enemy 
+- other card actions like stunning an enemy 
 - More card variety
 - Multi-phase upgrades for cards

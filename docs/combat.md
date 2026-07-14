@@ -11,14 +11,13 @@
 8. all gold is picked up 
 9. reward system kicks in
 
+
 ## Reward system
 1. offers to let the player add a new card to the deck from select few
-2. offers to let the player upgrade a card exsisting in the deck that is randomly selected
+2. offers to let the player upgrade a card exsisting in the deck that is one of 5 randomly selected
 3. lets the player choose to remove a card from the deck 
 
 
 ## Future Improvements
 - Energy based combat over number of cards
-- minor bugs with later game enemies not dealing damage
 - different reward system based on floor defeated
-- have to buy new cards for deck with gold making system tougher

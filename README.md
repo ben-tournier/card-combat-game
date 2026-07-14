@@ -7,6 +7,9 @@ This is a terminal based combat game centered around deck construction and comba
 - unique combat orders
 - Deck building constructing elements
 - boss fights
+- Player death system
+- Improve reward removal system 
+- Uses energy based system for card playing
 
 ## How to Run 
 Run the main file
@@ -15,6 +18,4 @@ Run the main file
 - More enemies 
 - More Cards
 - Save file 
-- Player death system
-- changing to turn based mana system over 3 card a turn system
-- Improve reward removal system 
+- Permanent effect rewards

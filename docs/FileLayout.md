@@ -1,0 +1,28 @@
+# Here to help as visual of file organization
+
+- card_creation 
+    - card_info.json
+    - card.py
+    - extract_cards.py
+- deck_creation_and_adjustment
+    - battle_deck.py
+    - deck_functions.py
+- docs
+    - BattleDeck.md
+    - cards.md
+    - enemies.md
+    - FileLayout.md
+- enemy_creation
+    - enemy_info.json 
+    - enemy_pool.py
+    - enemy.py
+    - extract_enemies.py
+- utilities
+    - check_index.py
+    - extract_enemies.py
+- combat.py
+- game.py
+- main.py
+- player.py
+- README.md
+- reward.py
