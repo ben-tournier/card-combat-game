@@ -12,7 +12,7 @@ def combat(user, enemies):
     user.deck.draw_hand()
 
     user.fill_energy()
-    print(f"Energy has been set to {user.max_energy} energy.")
+    
     # The outside for loop is what both allows the player and limits them to playing 3 cards each turn 
     while user.energy > 0:
         
@@ -56,8 +56,7 @@ def combat(user, enemies):
                 target = int(input("Which enemy would you like to target? "))
                 target = alive_enemies[target - 1]
 
-            print(card_choice)
-            time.sleep(1)
+
             user.play_card(card_choice, target)
 
         else:

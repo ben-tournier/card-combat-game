@@ -1,12 +1,5 @@
 from utilities.check_index import get_valid_input
-import random, os, time
-
-def clear_terminal():
-    time.sleep(.5)
-    os.system("cls")
-
-
-
+import random 
 
 """
 figures out if the user would like to add a card or not - not always, sometimes thinner deck can be better
@@ -223,24 +216,3 @@ def remove_card(user):
                         break
 
                 print("Please enter a valid card number or i<number>.")
-
-# This function will happen after a user successsfuly gets through a floor of combar 
-# It will cleanup money for the user, heal, and offer a deck change
-def reward(user):
-    user.cleanup_gold()
-
-    # Every cleared floor the user will heal up 5 hp
-    user.heal(5)
-    print(f"{user.name} healed 5 hp")
-
-    # let user know funding before going through shops and whatnot
-    print(f"\nYou currently have {user.gold} gold")
-
-    add_card(user)
-
-    upgrade_card(user)
-   
-    remove_card(user)
-
-    # cleans up screen after reward
-    clear_terminal()

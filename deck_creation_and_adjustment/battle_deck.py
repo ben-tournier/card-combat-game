@@ -20,7 +20,7 @@ class BattleDeck:
     def fill_starting_deck(self):
         # to make a reasonably functioning starting deck there are 10 copies of the basic strike and shield cards and 1 unique copy of a hypnotize card
 
-        for _ in range(5):
+        for _ in range(4):
             self.draw_pile.append(deepcopy(self.cards[1]["basic"]))
             self.draw_pile.append(deepcopy(self.cards[2]["basic"]))
 
@@ -33,6 +33,22 @@ class BattleDeck:
     # still in the design phase but there may be points where changed hand size are rewards for certain points
     def change_hand_size(self, amount):
         self.hand_size += amount
+        self.check_min_hand_size()
+
+
+    def check_min_hand_size(self):
+        # shouldn't need a while loop but just in case
+        # makes sure that the deck is big enough for the player to draw a hand from it
+        while len(self.get_full_deck()) < self.hand_size:
+
+            if random.choice([True, False]):
+                new_card = deepcopy(self.cards[1]["basic"]) # strike
+            else:
+                new_card = deepcopy(self.cards[2]["basic"]) # shield 
+
+            self.discard_pile.append(new_card)
+
+            print(f"A {new_card.name} was added to your deck to support new hand size.")
 
         #--------------- Card Movement ---------------
 

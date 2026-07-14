@@ -16,8 +16,6 @@ class Player:
         self.gold = 20
         self.money_pool = 0
         self.energy = 0
-
-        # This variable is here because potential later upgrade system increases amount of energy
         self.max_energy = 3
 
     def combat_state(self):
