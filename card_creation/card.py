@@ -9,6 +9,9 @@ class Card:
         self.damage = damage
         self.block = block
 
+    def get_energy_cost(self):
+        return self.cost
+
     def __str__(self):
         return (
             f"{self.name}\n"

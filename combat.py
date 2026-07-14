@@ -37,11 +37,11 @@ def combat(user, enemies):
 
         # This will get the index that the user wants to use while also checking to make sure it is valid
         card_choice = check_index(user)
-
+        card_choice -= 1
 
         # This will figure out if the card type is going to deal damage and if it is then it will ask for a target
         # There is now a check in here if there is only 1 enemy left alive so that the user does not have to chose and the damage will just be delt
-        if user.check_card_damage(card_choice - 1):
+        if user.check_card_damage(card_choice):
 
             alive_enemies = []
 
@@ -56,6 +56,8 @@ def combat(user, enemies):
                 target = int(input("Which enemy would you like to target? "))
                 target = alive_enemies[target - 1]
 
+            print(card_choice)
+            time.sleep(1)
             user.play_card(card_choice, target)
 
         else:

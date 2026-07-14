@@ -76,12 +76,9 @@ class BattleDeck:
     def get_type(self, index):
         return self.hand[index].card_type
 
-    def get_damage(self, index):
+    def card_deals_damage(self, index):
         return self.hand[index].damage > 0
     
-    def get_energy(self, index):
-        print("didit")
-        return self.hand[index].cost 
 
     def show_hand(self):
         if len(self.hand) == 0:
@@ -95,11 +92,13 @@ class BattleDeck:
 
     # the parameter will not be checked before being passed in - some sort of error message can be implemented later
     def play_card_from_hand(self, position):
-        if position < 1 or position > len(self.hand):
+        # Uses 0-based indexing now
+        if position < 0 or position >= len(self.hand):
             return None
 
-        card_played = self.hand.pop(position - 1)
+        card_played = self.hand.pop(position)
         self.discard_pile.append(card_played)
+
         return card_played
 
     #--------------- Upgrading Cards ---------------

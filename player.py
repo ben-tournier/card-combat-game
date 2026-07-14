@@ -1,4 +1,5 @@
 from deck_creation_and_adjustment.battle_deck import BattleDeck
+import time
 # This is where the users information is stored
 # On top of keeping a bunch of the deck information in here it will also store hp, block, etc.
 
@@ -58,7 +59,7 @@ class Player:
         return self.deck.get_type(index)
 
     def check_card_damage(self, index):
-        return self.deck.get_damage(index)
+        return self.deck.card_deals_damage(index)
 
     def gain_block(self, amount):
         self.block += amount
@@ -98,9 +99,10 @@ class Player:
         card_played = self.deck.get_card(index)
 
         if card_played is None:
-            return "Invalid card choice"
+            print("Invalid card choice")
+            return
 
-        energy_cost = card_played.cost
+        energy_cost = card_played.get_energy_cost()
 
         if not self.check_energy_amount(energy_cost):
             print(f"Sorry {card_played.name} requires {energy_cost} energy.")
@@ -108,18 +110,19 @@ class Player:
 
         self.charge_energy(energy_cost)
 
+        # Remove the card from the hand only AFTER paying the cost
         card_played = self.deck.play_card_from_hand(index)
 
         print(f"Playing {card_played.name} for {energy_cost} energy")
 
         actions_from_card = []
 
-        # Cycle cards draw another card and can provide other bonuses
+        # ---------- Cycle ----------
         if card_played.card_type == "cycle":
             self.deck.draw_card()
             actions_from_card.append("Drawing another card")
 
-        # Damage cards
+        # ---------- Damage ----------
         if enemy is not None and card_played.damage > 0:
 
             enemy.take_damage(card_played.damage)
@@ -132,7 +135,7 @@ class Player:
                 actions_from_card.append(f"{enemy.name} has been killed")
                 self.money_pool += enemy.value
 
-        # Block cards
+        # ---------- Block ----------
         if card_played.block > 0:
 
             self.gain_block(card_played.block)
@@ -141,8 +144,8 @@ class Player:
                 f"gaining {card_played.block} block"
             )
 
-        for string in actions_from_card:
-            print(string)
+        for action in actions_from_card:
+            print(action)    
 
 
         # ------------- Spending Functions -------------
