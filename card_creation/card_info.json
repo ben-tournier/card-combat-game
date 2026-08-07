@@ -88,7 +88,7 @@
       },
       "upgraded": {
         "name": "Quick Jab+",
-        "type": "attack",
+        "type": "cycleattack",
         "damage": 5,
         "block": 0,
         "cost": 0,
@@ -139,7 +139,7 @@
         "name": "Adrenaline",
         "type": "cycle",
         "damage": 0,
-        "block": 0,
+        "block": 1,
         "cost": 0,
         "gold": 3
       },

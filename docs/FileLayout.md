@@ -4,6 +4,10 @@
     - card_info.json
     - card.py
     - extract_cards.py
+- data \ saves
+    - save1.json
+    - save2.json
+    - save3.json
 - deck_creation_and_adjustment
     - battle_deck.py
     - deck_functions.py
@@ -17,6 +21,9 @@
     - enemy_pool.py
     - enemy.py
     - extract_enemies.py
+- game 
+    - game.py
+    - save_manager.py
 - utilities
     - check_index.py
     - extract_enemies.py

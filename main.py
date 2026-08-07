@@ -1,6 +1,6 @@
 import time
 from player import Player
-from game import Game
+from game.game import Game
 from enemy_creation.enemy_pool import generate_encounter
 from utilities.floor_view import floor_display
 from combat import combat

@@ -116,7 +116,7 @@ class Player:
         actions_from_card = []
 
         # ---------- Cycle ----------
-        if card_played.card_type == "cycle":
+        if "cycle" in card_played.card_type:
             self.deck.draw_card()
             actions_from_card.append("Drawing another card")
 

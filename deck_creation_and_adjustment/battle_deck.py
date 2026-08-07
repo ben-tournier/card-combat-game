@@ -20,7 +20,7 @@ class BattleDeck:
     def fill_starting_deck(self):
         # to make a reasonably functioning starting deck there are 10 copies of the basic strike and shield cards and 1 unique copy of a hypnotize card
 
-        for _ in range(4):
+        for _ in range(2):
             self.draw_pile.append(deepcopy(self.cards[1]["basic"]))
             self.draw_pile.append(deepcopy(self.cards[2]["basic"]))
 
