@@ -12,3 +12,9 @@ class Game:
     
     def is_elite_floor(self):
         return self.current_floor % 5 ==0 and not self.is_boss_floor()
+
+    def to_dict(self):
+        return {
+            "current_floor": self.current_floor, 
+            "player": self.player.to_dict()
+        }

@@ -161,3 +161,17 @@ class Player:
 
     def __repr__(self):
         return f"Player(HP={self.hp}, Block={self.block}, Gold={self.gold})"
+
+
+    # returns everything in the player object as a dictionary
+    def to_dict (self):
+        return{
+            "name": self.name,
+            "health": self.hp,
+            "energy": self.energy, 
+            "deck": self.deck.to_dict(), 
+            "gold": self.gold, 
+            "hp": self.hp, 
+            "max_energy": self.max_energy, 
+            "block": self.block
+        }

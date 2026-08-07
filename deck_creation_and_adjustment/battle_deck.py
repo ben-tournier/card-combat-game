@@ -189,3 +189,10 @@ class BattleDeck:
             return available_cards
 
         return random.sample(available_cards, num)
+
+    def to_dict(self):
+        return {
+            "draw_pile": [card.name for card in self.draw_pile], 
+            "hand": [card.name for card in self.hand], 
+            "discard_pile": [card.name for card in self.discard_pile]
+        }

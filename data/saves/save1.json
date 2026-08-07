@@ -1,0 +1,23 @@
+{
+    "current_floor": 1,
+    "player": {
+        "name": "Ben",
+        "health": 25,
+        "energy": 0,
+        "deck": {
+            "draw_pile": [
+                "Strike",
+                "Shield",
+                "Shield",
+                "Hypnotize",
+                "Strike"
+            ],
+            "hand": [],
+            "discard_pile": []
+        },
+        "gold": 20,
+        "hp": 25,
+        "max_energy": 3,
+        "block": 0
+    }
+}

@@ -5,6 +5,7 @@ from enemy_creation.enemy_pool import generate_encounter
 from utilities.floor_view import floor_display
 from combat import combat
 from reward_system.reward import reward
+from game.save_manager import save_game
 # Used to clear terminal and keep things clean throughout
 import os
 # This is going to be the outermost shell for the game to work
@@ -42,6 +43,10 @@ def main():
     player = startup()
 
     game = Game(player)
+
+    # Testing the saving data here
+
+    save_game(game)
 
     clear_terminal()
 
