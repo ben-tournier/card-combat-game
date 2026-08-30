@@ -18,3 +18,15 @@ class Game:
             "current_floor": self.current_floor, 
             "player": self.player.to_dict()
         }
+
+    @classmethod
+    def from_dict(cls, data):
+
+        player = Player.from_dict(
+            data["player"]
+        )
+
+        game = cls(player)
+        game.current_floor = data["current_floor"]
+
+        return game

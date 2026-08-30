@@ -20,7 +20,7 @@ class BattleDeck:
     def fill_starting_deck(self):
         # to make a reasonably functioning starting deck there are 10 copies of the basic strike and shield cards and 1 unique copy of a hypnotize card
 
-        for _ in range(2):
+        for _ in range(4):
             self.draw_pile.append(deepcopy(self.cards[1]["basic"]))
             self.draw_pile.append(deepcopy(self.cards[2]["basic"]))
 
@@ -196,3 +196,27 @@ class BattleDeck:
             "hand": [card.name for card in self.hand], 
             "discard_pile": [card.name for card in self.discard_pile]
         }
+
+    @classmethod
+    def from_dict(cls, data):
+
+        deck = cls()
+
+        from card_creation.extract_cards import get_card_by_name
+
+        for card_name in data["draw_pile"]:
+            deck.draw_pile.append(
+                get_card_by_name(card_name)
+            )
+
+        for card_name in data["hand"]:
+            deck.hand.append(
+                get_card_by_name(card_name)
+            )
+
+        for card_name in data["discard_pile"]:
+            deck.discard_pile.append(
+                get_card_by_name(card_name)
+            )
+
+        return deck

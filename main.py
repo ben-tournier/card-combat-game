@@ -5,11 +5,34 @@ from enemy_creation.enemy_pool import generate_encounter
 from utilities.floor_view import floor_display
 from combat import combat
 from reward_system.reward import reward
-from game.save_manager import save_game
+from game.save_manager import save_game, load_game
 # Used to clear terminal and keep things clean throughout
 import os
 # This is going to be the outermost shell for the game to work
 # it will call in a lot from the game file which is where a lot of the dirty work happens
+
+
+# TEMPORARY CHUNK!!!
+
+
+game = load_game()
+
+print(game.player.name)
+print(game.player.hp)
+print(game.player.deck.show_full_deck())
+
+
+
+# TEMPORARY CHUNK !!!
+
+
+
+
+
+
+
+
+
 
 GAME_FLOW = [
     "In this game there are a couple simple loops that will allow for you to construct a deck and fight enemies with it", 
@@ -37,6 +60,7 @@ def startup():
     name = input("What shall I call you?  ")
     user = Player(name)
     return user
+
 
 # This outermost shell is not currently used for much but eventually may include save files and other data 
 def main():
@@ -74,6 +98,7 @@ def main():
         
         #next floor
         game.current_floor += 1 
+        save_game(game)
 
 
 main()

@@ -1,23 +1,27 @@
 {
-    "current_floor": 1,
+    "current_floor": 6,
     "player": {
-        "name": "Ben",
-        "health": 25,
-        "energy": 0,
+        "name": "Ben ",
+        "health": 39,
+        "energy": 1,
         "deck": {
-            "draw_pile": [
-                "Strike",
-                "Shield",
-                "Shield",
-                "Hypnotize",
-                "Strike"
-            ],
+            "draw_pile": [],
             "hand": [],
-            "discard_pile": []
+            "discard_pile": [
+                "Quick Jab+",
+                "Adrenaline+",
+                "Adrenaline+",
+                "Adrenaline+",
+                "Quick Jab+",
+                "Quick Jab+",
+                "Quick Jab+",
+                "Quick Jab+",
+                "Adrenaline+"
+            ]
         },
-        "gold": 20,
-        "hp": 25,
+        "gold": 40,
+        "hp": 39,
         "max_energy": 3,
-        "block": 0
+        "block": 13
     }
 }

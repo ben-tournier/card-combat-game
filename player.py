@@ -175,3 +175,20 @@ class Player:
             "max_energy": self.max_energy, 
             "block": self.block
         }
+
+    @classmethod
+    def from_dict(cls, data):
+
+        player = cls(data["name"])
+
+        player.hp = data["hp"]
+        player.energy = data["energy"]
+        player.gold = data["gold"]
+        player.max_energy = data["max_energy"]
+        player.block = data["block"]
+
+        player.deck = BattleDeck.from_dict(
+            data["deck"]
+        )
+
+        return player

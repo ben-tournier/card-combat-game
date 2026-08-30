@@ -1,4 +1,5 @@
 from pathlib import Path
+from copy import deepcopy
 import json
 
 from card_creation.card import Card
@@ -33,3 +34,17 @@ def load_cards():
         }
 
     return cards
+
+# this will reextract the cards later when going through a save file with variety of versions
+def get_card_by_name(name):
+    cards = load_cards()
+
+    for card_pair in cards.values():
+
+        if card_pair["basic"].name == name: 
+            return deepcopy(card_pair["basic"])
+
+        if card_pair["upgraded"].name == name: 
+            return deepcopy(card_pair["upgraded"])
+
+    return None
